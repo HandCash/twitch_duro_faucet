@@ -54,7 +54,6 @@ const alreadyPaidHandles = new Set();
          if (alreadyPaidHandles.has(handle)) {
             client.say(target, `$${handle} I'm not giving you Đuros again 🤪`);
          } else {
-            // If handle doesnt exist reply with a "Get HandCash message"
             account.wallet.pay({
                description: 'Welcome to my channel!',
                payments: [
