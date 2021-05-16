@@ -1,0 +1,16 @@
+{
+  "name": "twitch_duros_bot",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "index": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "tmi.js": "^1.8.2",
+    "@handcash/handcash-connect": "0.2.6"
+  }
+}
