@@ -5,8 +5,8 @@ const { HandCashConnect } = require('@handcash/handcash-connect');
 const logger = fs.createWriteStream('payments-log.txt', {
    flags: 'a'
 });
-
-const handCashConnect = new HandCashConnect('6079dab2d81fa20bfe1318f9');
+const handcashAppId = '6079dab2d81fa20bfe1318f9';
+const handCashConnect = new HandCashConnect(handcashAppId);
 const handcashAuthToken = process.env.HANDCASH_AUTH_TOKEN;
 const twitchAuthToken = process.env.TWITCH_AUTH_TOKEN;
 if (!handcashAuthToken) {
@@ -14,6 +14,7 @@ if (!handcashAuthToken) {
    return;
 }
 const channelName = process.env.CHANNEL_NAME;
+const durosAmountPerGiveaway = 5;
 const alreadyPaidHandles = new Set();
 
 (async () => {
@@ -57,11 +58,11 @@ const alreadyPaidHandles = new Set();
             account.wallet.pay({
                description: 'Welcome to my channel!',
                payments: [
-                  { destination: handle, currencyCode: 'DUR', sendAmount: 5 },
+                  { destination: handle, currencyCode: 'DUR', sendAmount: durosAmountPerGiveaway },
                ],
             }).then((result) => {
                alreadyPaidHandles.add(handle);
-               client.say(target, `Sent 5 duros to $${handle}!`);
+               client.say(target, `Sent ${durosAmountPerGiveaway} duros to $${handle}!`);
                logger.write(JSON.stringify(result) + '\n');
             }).catch((error) => console.error(error));
          }
