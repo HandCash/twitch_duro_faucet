@@ -14,8 +14,9 @@ if (!handcashAuthToken) {
    return;
 }
 const channelName = process.env.CHANNEL_NAME;
-const durosAmountPerGiveaway = 5;
 const alreadyPaidHandles = new Set();
+const durosAmountPerGiveaway = 5;
+const paymentDescription = 'Welcome to my channel!';
 
 (async () => {
    const account = handCashConnect.getAccountFromAuthToken(handcashAuthToken);
@@ -56,7 +57,7 @@ const alreadyPaidHandles = new Set();
             client.say(target, `$${handle} I'm not giving you Đuros again 🤪`);
          } else {
             account.wallet.pay({
-               description: 'Welcome to my channel!',
+               description: paymentDescription,
                payments: [
                   { destination: handle, currencyCode: 'DUR', sendAmount: durosAmountPerGiveaway },
                ],
